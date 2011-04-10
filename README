@@ -1,0 +1,9 @@
+Simple plugin to create placeholder functionality for textarea/text field with type password or text.
+
+Just add .placehold_me(); to the selector for the type of input you want 'placeholder-ed', i.e.: 
+        $('input[type="text"], input[type="email"]').placehold_me();
+        $('input[type="password"]').placehold_me();
+        $('textarea').placehold_me();
+        
+The text field must also have an attribute placeholder which contains the text you want 'placeheld'. 
+
