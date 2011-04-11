@@ -4,15 +4,17 @@ $.fn.placehold_me = function(){
   return this.each(function() {
     var $this = $(this),
         val = $this.attr('placeholder');
-    if( $this[0].nodeName === "INPUT" ){
-      if($this.attr('type') === "text"){
+    if( $this[0].nodeName === "INPUT"){
+      if($this.attr('type') === "text" || $this.attr('type') === "email"){
         $this.attr('title', val);
         $this.val(val)
           .focus(function(){
-            if($this.attr('title') == val) $this.val("");
+            if($this.attr('title') === $this.val())
+              $this.val("");
           })
           .blur(function(){
-            if( $this.val() === "" ) $this.val(val);
+            if( $this.val() === "" )
+              $this.val(val);
           });
         }
         else if($this.attr('type') === "password"){
@@ -20,10 +22,7 @@ $.fn.placehold_me = function(){
           $('body').append("<span class='pass-span pldr-" + $this.attr('id') + "'>" + val + "</span>");
           $('.pldr-' + $this.attr('id') + '').css("position", "absolute").css("top", $offset.top + 4).css("left", $offset.left + 5).css("z-index", "9999");
           $this.focus(function(){
-            //if($this.attr('title') === val){
-              //$this.val("");
               $('.pldr-' + $this.attr('id') + '').hide();
-            //}
           })
           .blur(function(){
             if( $this.val() === "" ){
@@ -41,7 +40,7 @@ $.fn.placehold_me = function(){
         $this.attr('title', val);
         $this.val(val)
           .focus(function(){
-            if($this.attr('title') == val) $this.val("");
+            if($this.attr('title') === $this.val()) $this.val("");
           })
           .blur(function(){
             if( $this.val() === "" ) $this.val(val);
@@ -52,3 +51,4 @@ $.fn.placehold_me = function(){
       }
   });
 };
+
