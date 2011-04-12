@@ -4,8 +4,8 @@ $.fn.placehold_me = function(){
   return this.each(function() {
     var $this = $(this),
         val = $this.attr('placeholder');
-    if( $this[0].nodeName === "INPUT"){
-      if($this.attr('type') === "text" || $this.attr('type') === "email"){
+    if($this[0].nodeName === "INPUT" || $this[0].nodeName === "TEXTAREA"){
+      if($this.attr('type') === "text" || $this.attr('type') === "email" || $this[0].nodeName === "TEXTAREA"){
         $this.attr('title', val);
         $this.val(val)
           .focus(function(){
@@ -36,17 +36,8 @@ $.fn.placehold_me = function(){
           });
         }
       }
-      else if($this[0].nodeName === "TEXTAREA" ){
-        $this.attr('title', val);
-        $this.val(val)
-          .focus(function(){
-            if($this.attr('title') === $this.val()) $this.val("");
-          })
-          .blur(function(){
-            if( $this.val() === "" ) $this.val(val);
-          });
-      }
       else{
+        /*What is this!? Get outta here with that non input/text area nonsense!*/
         return false;
       }
   });

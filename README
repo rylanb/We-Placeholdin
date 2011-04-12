@@ -7,3 +7,6 @@ Just add .placehold_me(); to the selector for the type of input you want 'placeh
         
 The text field must also have an attribute placeholder which contains the text you want 'placeheld'. 
 
+You'll want to style the span class 'pass-span' with padding or position: relative, top: #px if you want to move down the spans a bit. The same goes for left alignment. I apologize, but I can't predict how you'll style your inputs and their respective text without making the plugin heaver than 3 lines of CSS.
+
+Please feel free to add comments or suggestions. I'm always up for constructive criticisms and learning opportunities.
