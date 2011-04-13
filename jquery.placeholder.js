@@ -19,7 +19,7 @@
         return false;
       } 
         
-      if($this.attr('type') === "text" || $this.attr('type') === "email"){
+      if($this.attr('type') === "text" || $this.attr('type') === "email" || $this[0].nodeName === "TEXTAREA"){
         $this.attr('title', val);
         $this.val(val).focus(function(){
           if($this.attr('title') === $this.val()){
