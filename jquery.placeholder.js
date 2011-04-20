@@ -4,21 +4,21 @@
     var settings = $.extend({}, $.fn.placehold_me.defaultOptions, options);
     
     return this.each(function() {
-
+      /* Check for Placeholder support natively in the browser here if you aren't including Modernizr - modernizr.com/*/
+      
       var $this = $(this),
           val = $this.attr('placeholder');
 
-      if($this[0].nodeName != "INPUT" && $this[0].nodeName != "TEXTAREA"){
-        /*What is this!? Get outta here with that non input/text area nonsense!*/
-        return false;
-      }
+      /*What is this!? Get outta here with that non input/text area nonsense!*/
+      if($this[0].nodeName != "INPUT" && $this[0].nodeName != "TEXTAREA"){return false;}
 
-      /* checks for placeholder attr exists 
+      /* checks if placeholder attribute exists 
       Return if doesn't exist so you don't empty fields with values in them */
-      if(val === "" || val === undefined){
-        return false;
-      } 
+      if(val === "" || val === undefined){return false;} 
         
+      /*Let's start the fun! Check what type of field you are dealing with. 
+      Textareas and inputs of type email/text are checked for now. 
+      Email is passed as type text, just included in case a browser gets uppity later */
       if($this.attr('type') === "text" || $this.attr('type') === "email" || $this[0].nodeName === "TEXTAREA"){
         $this.attr('title', val);
         $this.val(val).focus(function(){
@@ -52,7 +52,7 @@
     });
     
     $.fn.placehold_me.defaultOptions = {
-      /* put options here included for future extensibility*/
+      /* put options here. included for future extensibility*/
     };
   };
 })(jQuery);
