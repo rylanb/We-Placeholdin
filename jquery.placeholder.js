@@ -2,22 +2,34 @@
 (function($){
   $.fn.placehold_me = function(options){
     var settings = $.extend({}, $.fn.placehold_me.defaultOptions, options);
-    
+
+    /*Bind a form submit check to clear out default values if the user never entered the field
+    and changed the text */
+    $(this).parents('form').submit(function() {
+      var $input_fields = $(this).find('input, textarea');
+      $input_fields.each(function() {
+        var input = $(this);
+        if (input.val() === input.attr('placeholder')) {
+          input.val('');
+        }
+      })
+    });
+
     return this.each(function() {
       /* Check for Placeholder support natively in the browser here if you aren't including Modernizr - modernizr.com/*/
-      
+
       var $this = $(this),
           val = $this.attr('placeholder');
 
       /*What is this!? Get outta here with that non input/text area nonsense!*/
       if($this[0].nodeName != "INPUT" && $this[0].nodeName != "TEXTAREA"){return false;}
 
-      /* checks if placeholder attribute exists 
+      /* checks if placeholder attribute exists
       Return if doesn't exist so you don't empty fields with values in them */
-      if(val === "" || val === undefined){return false;} 
-        
-      /*Let's start the fun! Check what type of field you are dealing with. 
-      Textareas and inputs of type email/text are checked for now. 
+      if(val === "" || val === undefined){return false;}
+
+      /*Let's start the fun! Check what type of field you are dealing with.
+      Textareas and inputs of type email/text are checked for now.
       Email is passed as type text, just included in case a browser gets uppity later */
       if($this.attr('type') === "text" || $this.attr('type') === "email" || $this[0].nodeName === "TEXTAREA"){
         $this.attr('title', val);
@@ -50,7 +62,7 @@
         });
       }
     });
-    
+
     $.fn.placehold_me.defaultOptions = {
       /* put options here. included for future extensibility*/
     };
